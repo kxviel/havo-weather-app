@@ -1,0 +1,42 @@
+header {
+  height: 10vh;
+  width: 100vw;
+  background-color: $rei;
+  @include flex(row, space-between, center);
+  .brand {
+    width: 35%;
+    height: 100%;
+    padding: 0.7rem;
+    @include flex(row, flex-start, center);
+    & > h3 {
+      text-transform: uppercase;
+      letter-spacing: 0.7rem;
+      font-size: 2.1rem;
+    }
+  }
+  .form {
+    width: 28%;
+    height: 100%;
+    padding: 0.7rem;
+    @include flex(row, none, center);
+    input {
+      font-size: 1.4rem;
+      padding: 0.7rem;
+      letter-spacing: 0.1rem;
+      text-align: center;
+      width: 77%;
+      color: #fff;
+      border: none;
+      background-color: #00000000;
+      border-bottom: 0.2rem solid $ni;
+    }
+    input:focus {
+      outline: none;
+      border-bottom: 0.2rem solid #fff;
+    }
+    .find {
+      @include myButton($ichi, $ni, auto, auto, 0.7rem);
+      @include flex(column, center, center);
+    }
+  }
+}
