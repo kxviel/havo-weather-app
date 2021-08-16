@@ -1,0 +1,64 @@
+@import "../abstracts/mixins";
+@import "../abstracts/variables";
+@import "../abstracts/fonts";
+
+.main {
+  height: 100vh;
+  background-image: url("../../public/rain.jpg");
+  background-position: top;
+  background-size: cover;
+  position: relative;
+  .card {
+    height: 63vh;
+    width: 63vw;
+    padding: 1.4rem;
+    border-radius: 0.7rem;
+    @include absCenter();
+    @include glass();
+    @include flex(column, space-evenly, center);
+    .title {
+      text-transform: uppercase;
+      letter-spacing: 0.7rem;
+      font-size: 2.8rem;
+      color: $ichi;
+      transition: ease-in 0.2s;
+      &:hover {
+        color: $ni;
+        font-size: 2.82rem;
+      }
+    }
+    .form {
+      height: 30%;
+      width: 50%;
+      padding: 1.4rem;
+      @include flex(column, space-evenly, center);
+      .label {
+        text-transform: uppercase;
+        letter-spacing: 0.4rem;
+        font-size: 1.4rem;
+        color: $ni;
+        &:hover {
+          color: $ichi;
+          font-size: 1.409rem;
+        }
+      }
+      input {
+        font-size: 1.4rem;
+        padding: 0.7rem;
+        letter-spacing: 0.1rem;
+        text-align: center;
+        width: 77%;
+        color: #fff;
+        border: none;
+        background-color: #00000000;
+        border-bottom: 0.2rem solid $ni;
+      }
+      input:focus {
+        outline: none;
+      }
+      // .find {
+      //   @include myButton($ichi, $ni, auto, auto, 0.7rem);
+      // }
+    }
+  }
+}
