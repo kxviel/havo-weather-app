@@ -55,6 +55,7 @@
       }
       input:focus {
         outline: none;
+        border-bottom: 0.2rem solid rgb(255, 255, 255);
       }
       // .find {
       //   @include myButton($ichi, $ni, auto, auto, 0.7rem);
