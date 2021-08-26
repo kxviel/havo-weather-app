@@ -14,11 +14,10 @@ export default function Home() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) =>
-    router.push({
-      pathname: "/main",
-      query: data,
-    });
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    localStorage.setItem("city", data.location);
+    router.push("/main");
+  };
 
   return (
     <>

@@ -1,4 +1,41 @@
 @import "../components/navbar";
+@import "../abstracts//mixins";
 
 .root {
+  &__body {
+    height: 90vh;
+    width: 100vw;
+    @include flex(column, space-evenly, center);
+    &__current {
+      height: 49%;
+      width: 70%;
+
+      @include flex(row, space-evenly, center);
+      &__svg {
+        @include flex(row, center, center);
+        height: 77%;
+        width: 42%;
+      }
+      &__details {
+        height: 92%;
+        width: 57%;
+        padding: 2.1rem;
+
+        & > h1 {
+          font-weight: bold;
+          font-size: 3.5rem;
+          text-align: center;
+        }
+        & > p {
+          font-size: 2.1rem;
+          text-align: center;
+        }
+      }
+    }
+    &__forecast {
+      height: 49%;
+      width: 70%;
+      background-color: coral;
+    }
+  }
 }
