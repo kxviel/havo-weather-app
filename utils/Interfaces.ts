@@ -26,6 +26,10 @@ export interface Response {
   };
 }
 
-export interface AppBarProps {
+export interface CurrentProps {
   sendDataCallback: Function;
+  isValid: boolean;
+  current: Response;
+  svg: Icon;
+  location: string;
 }

@@ -3,39 +3,95 @@
 
 .root {
   &__body {
-    height: 90vh;
+    height: 100vh;
     width: 100vw;
-    @include flex(column, space-evenly, center);
+    @include flex(row, space-evenly, center);
     &__current {
-      height: 49%;
-      width: 70%;
+      height: 100%;
+      width: 28%;
+      background-color: white;
+      padding: 2.1rem;
+      @include flex(column, space-evenly, center);
+      &__search {
+        height: 12%;
+        width: 100%;
+        @include flex(column, center, center);
+        &__form {
+          width: 100%;
+          height: 100%;
+          @include flex(row, center, center);
+          &__myinput {
+            width: 84%;
+            height: 49%;
+            border-radius: 2rem 0 0 2rem;
+            border: solid;
+            border-right: none;
+            border-color: $rei;
+            padding: 0.7rem;
 
-      @include flex(row, space-evenly, center);
+            &:focus {
+              outline: none;
+            }
+          }
+          &__find {
+            width: 16%;
+            height: 49%;
+            border: solid;
+            border-color: $rei;
+            border-left: none;
+            background-color: white;
+            padding: 0.7rem;
+            text-align: center;
+            border-radius: 0 2rem 2rem 0;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
       &__svg {
+        height: 21%;
+        width: 100%;
         @include flex(row, center, center);
-        height: 77%;
-        width: 42%;
       }
       &__details {
-        height: 92%;
-        width: 57%;
-        padding: 2.1rem;
-
-        & > h1 {
-          font-weight: bold;
-          font-size: 3.5rem;
+        padding: 0.7rem;
+        height: 58%;
+        width: 100%;
+        &__temp {
           text-align: center;
+          font-size: 6.3rem;
+          &::after {
+            content: "\00b0 c";
+            font-size: 4.2rem;
+          }
         }
-        & > p {
-          font-size: 2.1rem;
+        &__datetime {
           text-align: center;
+          font-size: 2.1rem;
+          font-weight: 400;
+        }
+        & > hr {
+          margin: 2.8rem 0;
+        }
+        &__weather,
+        &__precip {
+          text-align: center;
+          font-size: 1.7rem;
+          font-weight: 600;
+        }
+        & > h3 {
+          text-align: center;
+          font-size: 2.1rem;
+          margin-top: 2.1rem;
+          text-transform: uppercase;
+          letter-spacing: 1.4rem;
         }
       }
     }
     &__forecast {
-      height: 49%;
-      width: 70%;
-      background-color: coral;
+      height: 100%;
+      width: 72%;
     }
   }
 }

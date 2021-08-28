@@ -1,10 +1,11 @@
 import { Inputs, Icon, Response } from "../utils/Interfaces";
 import { filterWeatherIcon } from "../services/FilterSVG";
 import { useCallback, useEffect, useState } from "react";
-import AppBar from "../components/Appbar";
+import AppBar from "../components/Current";
 import { api } from "../services/creds";
 import Image from "next/image";
 import axios from "axios";
+import Current from "../components/Current";
 
 const Main = () => {
   const [isValid, setIsValid] = useState<boolean>(false);
@@ -52,6 +53,7 @@ const Main = () => {
           }
         }
         setCurrent(data as Response);
+        console.log(data);
       })
       .finally(() => {
         let icon = filterWeatherIcon(current.condition.code);
@@ -71,32 +73,16 @@ const Main = () => {
 
   return (
     <>
-      <AppBar sendDataCallback={(data: Inputs) => onSubmit(data)} />
       <div className="root">
         <div className="root__body">
           <div className="root__body__current">
-            <div className="root__body__current__svg">
-              {current.condition.icon != "" && (
-                <Image
-                  height="177"
-                  width="177"
-                  alt="SVG"
-                  src={
-                    !isValid
-                      ? `https://${current.condition.icon}`
-                      : current.is_day === 1
-                      ? `${svgIndex?.day_link}`
-                      : `${svgIndex?.night_link}`
-                  }
-                />
-              )}
-            </div>
-            <div className="root__body__current__details">
-              <h1>{location}</h1>
-              <p>{current.temp_c}</p>
-              <p>{current.condition.text}</p>
-              <p>Precipitation: {current.precip_mm}</p>
-            </div>
+            <Current
+              location={location}
+              isValid={isValid}
+              current={current}
+              svg={svgIndex}
+              sendDataCallback={(data: Inputs) => onSubmit(data)}
+            />
           </div>
           <div className="root__body__forecast">s</div>
         </div>
