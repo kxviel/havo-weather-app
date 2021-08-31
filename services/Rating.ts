@@ -7,10 +7,10 @@ export const UV = (uv: number) => {
 };
 export const WindDirection = (dir: string) => {
   if (dir == "N") return "↑";
-  else if (dir == "NE") return "⭧";
-  else if (dir == "NW") return "⭦";
-  else if (dir == "SE") return "⭨";
-  else if (dir == "SW") return "⭩";
+  else if (dir == "NE" || dir == "ENE") return "⭧";
+  else if (dir == "NW" || dir == "WNW") return "⭦";
+  else if (dir == "SE" || dir == "ESE") return "⭨";
+  else if (dir == "SW" || dir == "WSW") return "⭩";
   else if (dir == "S") return "↓";
   else if (dir == "E") return "→";
   else if (dir == "W") return "←";

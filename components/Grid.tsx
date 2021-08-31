@@ -71,7 +71,7 @@ const Grid = (props: GridProps) => {
       <div className="root__body__weatherDetails__grid__item">
         <p>Air Quality</p>
         <div className="root__body__weatherDetails__grid__item__subitem">
-          <Image src="/aqi.png" height="56" width="56" alt="uvi" />
+          <Image src="/AQI.png" height="56" width="56" alt="uvi" />
           <h1>{Math.round(props.currentWeather.air_quality.co)}</h1>
         </div>
         <p>{rating[4]}</p>
