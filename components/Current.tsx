@@ -1,11 +1,12 @@
-import { CurrentProps, Inputs } from "../Interfaces/Interfaces";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FiSearch } from "react-icons/fi";
 import Image from "next/image";
 import { formatDate } from "../services/FormatDate";
 import { useEffect, useState } from "react";
+import { CurrentWeatherProps } from "../Interfaces/CurrentWeatherProps.type";
+import { Inputs } from "../Interfaces/Form.type";
 
-const Current = (props: CurrentProps) => {
+const Current = (props: CurrentWeatherProps) => {
   const [myDateTime, setDateTime] = useState({
     day: "",
     time: "",

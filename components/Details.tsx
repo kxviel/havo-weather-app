@@ -1,11 +1,11 @@
-import { DetailProps, Icon } from "../Interfaces/Interfaces";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Grid from "./Grid";
 import { filterForecastIcon, filterWeatherIcon } from "../services/FilterSVG";
 import { timeList } from "../utils/TimeList";
+import { ForecastProps } from "../Interfaces/ForecastProps.type";
 
-const Details = (props: DetailProps) => {
+const Details = (props: ForecastProps) => {
   const [iconArray, setIconArray] = useState<Array<string>>([]);
 
   useEffect(() => {

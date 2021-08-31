@@ -1,4 +1,4 @@
-import { Icon } from "../Interfaces/Interfaces";
+import { Icon } from "../Interfaces/Icon.type";
 import { data } from "../utils/WeatherData";
 
 export const filterWeatherIcon = (apiCode: number) => {

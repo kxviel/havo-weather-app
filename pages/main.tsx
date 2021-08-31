@@ -1,15 +1,13 @@
-import {
-  Inputs,
-  Icon,
-  Response,
-  ForecastProps,
-} from "../Interfaces/Interfaces";
 import { filterWeatherIcon } from "../services/FilterSVG";
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../services/API";
 import axios from "axios";
 import Current from "../components/Current";
 import Details from "../components/Details";
+import { Inputs } from "../Interfaces/Form.type";
+import { CurrentWeather } from "../Interfaces/CurrentWeather.type";
+import { Icon } from "../Interfaces/Icon.type";
+import { Forecast } from "../Interfaces/Forecast.type";
 
 const Main = () => {
   const [isValid, setIsValid] = useState<boolean>(false);
@@ -19,7 +17,7 @@ const Main = () => {
     day_link: "/default.svg",
     night_link: "/default.svg",
   });
-  const [current, setCurrent] = useState<Response>({
+  const [current, setCurrent] = useState<CurrentWeather>({
     air_quality: {
       co: 0,
       no2: 0,
@@ -45,7 +43,7 @@ const Main = () => {
       code: 0,
     },
   });
-  const [forecast, setForecast] = useState<ForecastProps>({
+  const [forecast, setForecast] = useState<Forecast>({
     astro: {
       sunrise: "",
       sunset: "",
@@ -93,7 +91,7 @@ const Main = () => {
             data = { ...data, [key]: value };
           }
         }
-        setCurrent(data as Response);
+        setCurrent(data as CurrentWeather);
 
         let forecastData = {};
         for (let key in res.data.forecast.forecastday[0]) {
@@ -102,7 +100,7 @@ const Main = () => {
             forecastData = { ...forecastData, [key]: value };
           }
         }
-        setForecast(forecastData as ForecastProps);
+        setForecast(forecastData as Forecast);
       })
       .finally(() => {
         setIsLoading(false);

@@ -18,7 +18,6 @@ const Grid = (props: GridProps) => {
     arr.push(Humidity(props.currentWeather.humidity));
     arr.push(Visibility(props.currentWeather.vis_km));
     arr.push(AQI(props.currentWeather.air_quality.co));
-    console.log(arr);
     setRating(arr);
   }, [props]);
 

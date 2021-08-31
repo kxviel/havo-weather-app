@@ -18,8 +18,8 @@ export const WindDirection = (dir: string) => {
 export const Humidity = (hum: number) => {
   if (hum <= 45) return "Ok";
   else if (hum >= 50 && hum <= 79) return "Mild";
-  else if (hum >= 80 && hum <= 79) return "Severe";
-  else if (hum >= 89 && hum <= 98) return "Extreme";
+  else if (hum >= 80 && hum <= 89) return "Severe";
+  else if (hum >= 90 && hum <= 98) return "Extreme";
 };
 export const Visibility = (vis: number) => {
   if (vis >= 7) return "Good";

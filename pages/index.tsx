@@ -1,10 +1,7 @@
 import Head from "next/head";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
-
-type Inputs = {
-  location: string;
-};
+import { Inputs } from "../Interfaces/Form.type";
 
 export default function Home() {
   const router = useRouter();

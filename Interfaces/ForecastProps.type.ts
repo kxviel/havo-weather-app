@@ -1,8 +1,8 @@
 import { CurrentWeather } from "./CurrentWeather.type";
 import { Forecast } from "./Forecast.type";
-import { ForecastProps } from "./ForecastProps.type";
 
-export type GridProps = {
+export type ForecastProps = {
+  forecast: Forecast;
   currentWeather: CurrentWeather;
-  forecastWeather: Forecast;
+  isLoading: boolean;
 };

@@ -1,5 +1,6 @@
 @import "../components/navbar";
-@import "../abstracts//mixins";
+@import "../abstracts/mixins";
+@import "../MediaQueries/main";
 
 .root {
   &__body {
@@ -213,61 +214,6 @@
             font-size: 2.1rem;
             @include flex(row, space-evenly, center);
           }
-        }
-      }
-    }
-  }
-}
-
-@include respond(tab-port) {
-  .root {
-    &__body {
-      &__current {
-        width: 35%;
-        padding: 1.4rem;
-        &__details {
-          &__temp {
-            font-size: 5.6rem;
-            &::after {
-              font-size: 3.5rem;
-            }
-          }
-          &__weather,
-          &__precip {
-            font-size: 1.4rem;
-          }
-          & > h3 {
-            font-size: 2.1rem;
-          }
-        }
-      }
-      &__weatherDetails {
-        height: 100%;
-        width: 72%;
-
-        &__header {
-          height: 10vh;
-          width: 100%;
-          padding: 0 3.5rem;
-          @include flex(row, space-between, center);
-          & > p {
-            width: 30%;
-          }
-          &__deg {
-            &--c {
-              margin-right: 1.4rem;
-            }
-          }
-        }
-        &__forecast {
-          height: 20vh;
-          width: 100%;
-          padding: 1.4rem;
-        }
-        &__grid {
-          height: 70vh;
-          width: 100%;
-          padding: 1.4rem;
         }
       }
     }
