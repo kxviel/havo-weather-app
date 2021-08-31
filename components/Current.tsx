@@ -1,4 +1,4 @@
-import { CurrentProps, Inputs } from "../utils/Interfaces";
+import { CurrentProps, Inputs } from "../Interfaces/Interfaces";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FiSearch } from "react-icons/fi";
 import Image from "next/image";

@@ -26,5 +26,27 @@ body {
   font-family: "Montserrat", sans-serif;
   line-height: 1.7;
   box-sizing: border-box;
-  background-color: $rei;
+  background-color: #f9f7f6;
+}
+
+::-webkit-scrollbar {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f7f6f9;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e6e6e6;
+  border-radius: 1.4rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #acacac;
+  border-radius: 1.4rem;
 }

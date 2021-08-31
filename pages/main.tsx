@@ -1,20 +1,33 @@
-import { Inputs, Icon, Response } from "../utils/Interfaces";
+import {
+  Inputs,
+  Icon,
+  Response,
+  ForecastProps,
+} from "../Interfaces/Interfaces";
 import { filterWeatherIcon } from "../services/FilterSVG";
 import { useCallback, useEffect, useState } from "react";
-import AppBar from "../components/Current";
-import { api } from "../services/creds";
-import Image from "next/image";
+import { api } from "../services/API";
 import axios from "axios";
 import Current from "../components/Current";
+import Details from "../components/Details";
 
 const Main = () => {
   const [isValid, setIsValid] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [location, setLocation] = useState<string>("");
   const [svgIndex, setSVGIndex] = useState<Icon>({
     day_link: "/default.svg",
     night_link: "/default.svg",
   });
   const [current, setCurrent] = useState<Response>({
+    air_quality: {
+      co: 0,
+      no2: 0,
+      o3: 0,
+      pm2_5: 0,
+      pm10: 0,
+      so2: 0,
+    },
     feelslike_c: 0,
     humidity: 0,
     last_updated: "",
@@ -32,6 +45,34 @@ const Main = () => {
       code: 0,
     },
   });
+  const [forecast, setForecast] = useState<ForecastProps>({
+    astro: {
+      sunrise: "",
+      sunset: "",
+      moonrise: "",
+      moonset: "",
+      moon_phase: "",
+    },
+    date: "",
+    day: {
+      maxtemp_c: 0,
+      maxtemp_f: 0,
+      mintemp_f: 0,
+      mintemp_c: 0,
+      avgtemp_c: 0,
+    },
+    hour: [
+      {
+        condition: {
+          code: 0,
+          icon: "/default.svg",
+        },
+        is_day: 0,
+        temp_c: 0,
+        temp_f: 0,
+      },
+    ],
+  });
 
   const onSubmit = (data: Inputs) => {
     localStorage.setItem("city", data.location);
@@ -41,7 +82,7 @@ const Main = () => {
   const getWeather = useCallback(() => {
     let city = localStorage.getItem("city") as string;
     axios
-      .get(`${api}${city}`)
+      .get(`${api}${city}&aqi=yes`)
       .then((res) => {
         setLocation(res.data.location.name);
 
@@ -53,9 +94,18 @@ const Main = () => {
           }
         }
         setCurrent(data as Response);
-        console.log(data);
+
+        let forecastData = {};
+        for (let key in res.data.forecast.forecastday[0]) {
+          if (res.data.forecast.forecastday[0].hasOwnProperty(key)) {
+            let value = res.data.forecast.forecastday[0][key];
+            forecastData = { ...forecastData, [key]: value };
+          }
+        }
+        setForecast(forecastData as ForecastProps);
       })
       .finally(() => {
+        setIsLoading(false);
         let icon = filterWeatherIcon(current.condition.code);
         if (icon !== undefined) {
           setIsValid(true);
@@ -68,6 +118,7 @@ const Main = () => {
   }, [current.condition.code]);
 
   useEffect(() => {
+    setIsLoading(true);
     getWeather();
   }, [getWeather]);
 
@@ -84,7 +135,13 @@ const Main = () => {
               sendDataCallback={(data: Inputs) => onSubmit(data)}
             />
           </div>
-          <div className="root__body__forecast">s</div>
+          <div className="root__body__weatherDetails">
+            <Details
+              currentWeather={current}
+              isLoading={isLoading}
+              forecast={forecast}
+            />
+          </div>
         </div>
       </div>
     </>

@@ -5,7 +5,7 @@
 .main {
   height: 100vh;
   background-image: url("../../public/rain.jpg");
-  background-position: top;
+  background-position: bottom;
   background-size: cover;
   position: relative;
   .card {
@@ -20,7 +20,7 @@
       text-transform: uppercase;
       letter-spacing: 0.7rem;
       font-size: 2.8rem;
-      color: $ichi;
+      color: #000;
       transition: ease-in 0.2s;
       &:hover {
         color: $ni;
