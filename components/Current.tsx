@@ -22,8 +22,6 @@ const Current = (props: CurrentWeatherProps) => {
   };
 
   useEffect(() => {
-    console.log(props.degreeState);
-
     let dateTime = formatDate(props.current.last_updated);
     setDateTime({
       day: dateTime[0],
