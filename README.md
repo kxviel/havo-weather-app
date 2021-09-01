@@ -1,4 +1,4 @@
-Live Demo: https://havo-weather-app.vercel.app/
+### Live Demo: https://havo-weather-app.vercel.app/
+![Screenshot (416)](https://user-images.githubusercontent.com/64493268/131731133-2fead76b-e5a3-4980-abb7-fcc3b0089f7f.png)
+![Screenshot (417)](https://user-images.githubusercontent.com/64493268/131731153-d8d6fb5f-2323-41fa-8b9c-bb16132d218e.png)
 
-![Screenshot (416)](https://user-images.githubusercontent.com/64493268/131730947-816e3e98-ac0f-42ba-9911-63b116f02041.png)
-![Screenshot (417)](https://user-images.githubusercontent.com/64493268/131730953-9f8655a9-ab90-4c8b-8bb2-cba7f0cf36b6.png)
