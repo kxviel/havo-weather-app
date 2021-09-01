@@ -9,8 +9,8 @@ export const filterWeatherIcon = (apiCode: number) => {
 export const filterForecastIcon = (apiCode: number, is_day: number) => {
   const filteredData: Icon[] = data.filter((x) => apiCode === x.code);
   if (is_day === 1) {
-    return filteredData[0].day_link;
+    return filteredData[0]?.day_link;
   } else {
-    return filteredData[0].night_link;
+    return filteredData[0]?.night_link;
   }
 };

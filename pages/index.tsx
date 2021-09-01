@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import { Inputs } from "../Interfaces/Form.type";
+import { FiSearch } from "react-icons/fi";
 
 export default function Home() {
   const router = useRouter();
@@ -26,18 +27,12 @@ export default function Home() {
         <div className="card">
           <h1 className="title">welcome to havo</h1>
           <form onSubmit={handleSubmit(onSubmit)} className="form">
-            <strong className="label">Enter Your Location</strong>
-            <>
-              <input
-                type="text"
-                {...register("location", { required: true })}
-              />
-            </>
-            {errors.location && (
-              <p style={{ textAlign: "center", color: "#0099" }}>
-                This field is required
-              </p>
-            )}
+            <strong className="label">City</strong>
+            <input type="text" {...register("location", { required: true })} />
+            {errors.location && <p className="err">This field is required</p>}
+            <button className="find">
+              <FiSearch />
+            </button>
           </form>
         </div>
       </div>

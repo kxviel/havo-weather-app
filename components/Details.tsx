@@ -6,20 +6,7 @@ import { timeList } from "../utils/TimeList";
 import { ForecastProps } from "../Interfaces/ForecastProps.type";
 
 const Details = (props: ForecastProps) => {
-  const [iconArray, setIconArray] = useState<Array<string>>([]);
-
-  useEffect(() => {
-    let arr = props.forecast.hour.map((x) => x.condition.code);
-    let iconArray = [];
-    if (!props.isLoading) {
-      for (let index = 0; index < arr.length; index++) {
-        iconArray.push(
-          filterForecastIcon(arr[index], props.forecast.hour[index].is_day)
-        );
-      }
-      setIconArray(iconArray);
-    }
-  }, [props]);
+  useEffect(() => {}, [props]);
 
   return (
     <>
@@ -35,20 +22,22 @@ const Details = (props: ForecastProps) => {
         </div>
       </div>
       <div className="root__body__weatherDetails__forecast">
-        {props.forecast.hour.map((x, i) => {
-          return (
-            <div key={i} className="root__body__weatherDetails__forecast__hour">
-              <h3>{x.temp_c}</h3>
-              <p>{timeList[i]}</p>
-              <Image
-                height="63"
-                width="63"
-                alt="SVG"
-                src={iconArray[i] !== undefined ? iconArray[i] : "/default.svg"}
-              />
-            </div>
-          );
-        })}
+        {props.forecast.hour.map((x, i) => (
+          <div key={i} className="root__body__weatherDetails__forecast__hour">
+            <h3>{x.temp_c}</h3>
+            <p>{timeList[i]}</p>
+            <Image
+              height={props.iconArray[i] !== undefined ? "77" : "49"}
+              width={props.iconArray[i] !== undefined ? "70" : "49"}
+              alt="SVG"
+              src={
+                props.iconArray[i] !== undefined
+                  ? props.iconArray[i]
+                  : props.fallbackIcon[i]
+              }
+            />
+          </div>
+        ))}
       </div>
       <Grid
         currentWeather={props.currentWeather}

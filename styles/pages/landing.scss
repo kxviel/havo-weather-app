@@ -4,8 +4,8 @@
 
 .main {
   height: 100vh;
-  background-image: url("../../public/rain.jpg");
-  background-position: bottom;
+  background-image: url("../../public/bg.jpg");
+  background-position: right;
   background-size: cover;
   position: relative;
   .card {
@@ -32,14 +32,18 @@
       width: 50%;
       padding: 1.4rem;
       @include flex(column, space-evenly, center);
+      .err {
+        color: #f56868;
+      }
       .label {
         text-transform: uppercase;
         letter-spacing: 0.4rem;
-        font-size: 1.4rem;
+        font-size: 1.7rem;
+        font-weight: bold;
         color: $ni;
         &:hover {
           color: $ichi;
-          font-size: 1.409rem;
+          font-size: 1.79rem;
         }
       }
       input {
@@ -47,7 +51,7 @@
         padding: 0.7rem;
         letter-spacing: 0.1rem;
         text-align: center;
-        width: 77%;
+        width: 87%;
         color: #fff;
         border: none;
         background-color: #00000000;
@@ -57,9 +61,71 @@
         outline: none;
         border-bottom: 0.2rem solid rgb(255, 255, 255);
       }
-      // .find {
-      //   @include myButton($ichi, $ni, auto, auto, 0.7rem);
-      // }
+      .find {
+        padding: 0.7rem;
+        margin-top: 2.1rem;
+        border: none;
+        transition: all ease-in 0.1s;
+        @include glass();
+        &:hover {
+          transform: translateY(-0.12rem);
+          background-color: azure;
+        }
+      }
+    }
+  }
+}
+
+//=======================================================
+// Tablet Potrait
+//=======================================================
+
+@include respond(tab-port) {
+  .main {
+    .card {
+      .form {
+        width: 63%;
+        input {
+          width: 97%;
+        }
+      }
+    }
+  }
+}
+
+//=======================================================
+// Phone
+//=======================================================
+
+@include respond(phone) {
+  .main {
+    .card {
+      width: 70vw;
+      padding: 0.7rem;
+      .title {
+        font-size: 2.4rem;
+        text-align: center;
+        color: #000;
+        transition: ease-in 0.2s;
+        &:hover {
+          color: $ni;
+          font-size: 2.82rem;
+        }
+      }
+      .form {
+        width: 77%;
+        .err {
+          color: #fdb5b5;
+        }
+        .label {
+          color: #000;
+        }
+        input {
+          font-size: 1.9rem;
+          width: 97%;
+          margin-top: 2.1rem;
+        }
+      }
     }
   }
 }

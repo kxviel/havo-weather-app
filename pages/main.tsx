@@ -1,4 +1,4 @@
-import { filterWeatherIcon } from "../services/FilterSVG";
+import { filterForecastIcon, filterWeatherIcon } from "../services/FilterSVG";
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../services/API";
 import axios from "axios";
@@ -8,10 +8,13 @@ import { Inputs } from "../Interfaces/Form.type";
 import { CurrentWeather } from "../Interfaces/CurrentWeather.type";
 import { Icon } from "../Interfaces/Icon.type";
 import { Forecast } from "../Interfaces/Forecast.type";
+import { useRouter } from "next/router";
 
 const Main = () => {
+  const router = useRouter();
+  const [iconArray, setIconArray] = useState<Array<string>>([]);
+  const [fallbackIcon, setFallbackArray] = useState<Array<string>>([]);
   const [isValid, setIsValid] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [location, setLocation] = useState<string>("");
   const [svgIndex, setSVGIndex] = useState<Icon>({
     day_link: "/default.svg",
@@ -82,6 +85,12 @@ const Main = () => {
     axios
       .get(`${api}${city}&aqi=yes`)
       .then((res) => {
+        if (res.status != 200) {
+          alert("ERROR, Sorry :(");
+          localStorage.clear();
+          router.push("/");
+        }
+
         setLocation(res.data.location.name);
 
         let data = {};
@@ -103,7 +112,7 @@ const Main = () => {
         setForecast(forecastData as Forecast);
       })
       .finally(() => {
-        setIsLoading(false);
+        //For Current
         let icon = filterWeatherIcon(current.condition.code);
         if (icon !== undefined) {
           setIsValid(true);
@@ -111,12 +120,26 @@ const Main = () => {
         } else {
           setIsValid(false);
         }
+        //For Forecast
+        let arr = forecast.hour.map((x) => x.condition.code);
+        let fallback = forecast.hour.map((x) => `https:${x.condition.icon}`);
+        setFallbackArray(fallback);
+        let iconArray = [];
+        for (let index = 0; index < arr.length; index++) {
+          iconArray.push(
+            filterForecastIcon(arr[index], forecast.hour[index].is_day)
+          );
+        }
+        setIconArray(iconArray);
       })
-      .catch((err) => console.log(err));
-  }, [current.condition.code]);
+      .catch((err) => {
+        alert("Location Entered Doesnt Exist in Our Database, Sorry :(");
+        localStorage.clear();
+        router.push("/");
+      });
+  }, [current.condition.code, forecast.hour, router]);
 
   useEffect(() => {
-    setIsLoading(true);
     getWeather();
   }, [getWeather]);
 
@@ -134,11 +157,14 @@ const Main = () => {
             />
           </div>
           <div className="root__body__weatherDetails">
-            <Details
-              currentWeather={current}
-              isLoading={isLoading}
-              forecast={forecast}
-            />
+            {iconArray[7] !== undefined && fallbackIcon[7] !== undefined && (
+              <Details
+                currentWeather={current}
+                iconArray={iconArray}
+                fallbackIcon={fallbackIcon}
+                forecast={forecast}
+              />
+            )}
           </div>
         </div>
       </div>
