@@ -13,6 +13,7 @@ export type CurrentWeather = {
   precip_mm: number;
   pressure_mb: number;
   temp_c: number;
+  temp_f: number;
   uv: number;
   vis_km: number;
   wind_dir: string;

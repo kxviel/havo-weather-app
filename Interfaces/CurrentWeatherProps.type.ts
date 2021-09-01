@@ -7,4 +7,5 @@ export type CurrentWeatherProps = {
   current: CurrentWeather;
   svg: Icon;
   location: string;
+  degreeState: boolean;
 };

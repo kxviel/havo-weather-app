@@ -1,22 +1,35 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Grid from "./Grid";
-import { filterForecastIcon, filterWeatherIcon } from "../services/FilterSVG";
 import { timeList } from "../utils/TimeList";
 import { ForecastProps } from "../Interfaces/ForecastProps.type";
 
 const Details = (props: ForecastProps) => {
-  useEffect(() => {}, [props]);
+  const [isCelcius, setIsCelcius] = useState<boolean>(true);
+  const setFaranheit = () => {
+    props.degreeState(false);
+    setIsCelcius(false);
+  };
+  const setCelcius = () => {
+    props.degreeState(true);
+    setIsCelcius(true);
+  };
 
   return (
     <>
       <div className="root__body__weatherDetails__header">
         <p>Weather | Today</p>
         <div className="root__body__weatherDetails__header__deg">
-          <button className="root__body__weatherDetails__header__deg--c">
+          <button
+            onClick={setCelcius}
+            className="root__body__weatherDetails__header__deg--c"
+          >
             C
           </button>
-          <button className="root__body__weatherDetails__header__deg--f">
+          <button
+            onClick={setFaranheit}
+            className="root__body__weatherDetails__header__deg--f"
+          >
             F
           </button>
         </div>
@@ -24,7 +37,7 @@ const Details = (props: ForecastProps) => {
       <div className="root__body__weatherDetails__forecast">
         {props.forecast.hour.map((x, i) => (
           <div key={i} className="root__body__weatherDetails__forecast__hour">
-            <h3>{x.temp_c}</h3>
+            <h3>{isCelcius ? `${x.temp_c}° C` : `${x.temp_f}° F`}</h3>
             <p>{timeList[i]}</p>
             <Image
               height={props.iconArray[i] !== undefined ? "77" : "49"}

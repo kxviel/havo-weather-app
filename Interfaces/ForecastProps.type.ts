@@ -6,4 +6,5 @@ export type ForecastProps = {
   currentWeather: CurrentWeather;
   iconArray: string[];
   fallbackIcon: string[];
+  degreeState: Function;
 };

@@ -16,6 +16,7 @@ const Main = () => {
   const [fallbackIcon, setFallbackArray] = useState<Array<string>>([]);
   const [isValid, setIsValid] = useState<boolean>(false);
   const [location, setLocation] = useState<string>("");
+  const [isCelcius, setIsCelcius] = useState<boolean>(true);
   const [svgIndex, setSVGIndex] = useState<Icon>({
     day_link: "/default.svg",
     night_link: "/default.svg",
@@ -35,6 +36,7 @@ const Main = () => {
     precip_mm: 0,
     pressure_mb: 0,
     temp_c: 0,
+    temp_f: 0,
     uv: 0,
     vis_km: 0,
     wind_dir: "",
@@ -139,6 +141,10 @@ const Main = () => {
       });
   }, [current.condition.code, forecast.hour, router]);
 
+  const handleDegreeState = (val: boolean) => {
+    setIsCelcius(val);
+  };
+
   useEffect(() => {
     getWeather();
   }, [getWeather]);
@@ -149,6 +155,7 @@ const Main = () => {
         <div className="root__body">
           <div className="root__body__current">
             <Current
+              degreeState={isCelcius}
               location={location}
               isValid={isValid}
               current={current}
@@ -159,6 +166,9 @@ const Main = () => {
           <div className="root__body__weatherDetails">
             {iconArray[7] !== undefined && fallbackIcon[7] !== undefined && (
               <Details
+                degreeState={(isCelcius: boolean) => {
+                  handleDegreeState(isCelcius);
+                }}
                 currentWeather={current}
                 iconArray={iconArray}
                 fallbackIcon={fallbackIcon}
